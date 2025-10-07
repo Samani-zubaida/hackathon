@@ -1,11 +1,7 @@
-// controllers/postController.js
-import Post from "../models/userPost.js";
-import path from "path";
-import fs from "fs";
 
 // Create Post
-import Post from "../models/postModel.js";
-import cloudinary from "../config/cloudinary.js"; // your cloudinary config
+import Post from "../models/UserPost.js";
+import cloudinary from "../lib/config.js" // your cloudinary config
 
 // Create Post
 export const createPost = async (req, res) => {

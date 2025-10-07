@@ -1,10 +1,10 @@
 import express from "express";
-import { createPost } from "../controllers/postController.js";
-import { protect } from "../middleware/authMiddleware.js";
+import { createPost } from "../controllers/postControllers.js";
+import { protectRoute } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 // POST /api/posts/upload
-router.post("/upload", protect, createPost);
+router.post("/upload", protectRoute, createPost);
 
 export default router;
