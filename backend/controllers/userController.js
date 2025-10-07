@@ -1,4 +1,4 @@
-import User from "./models/User.js";
+import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -94,4 +94,8 @@ export const checkAuth = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Something went wrong", error: error.message });
   }
+};
+
+export const me = (req, res) => {
+  res.json({ user: req.user });
 };

@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const userPostSchema = new mongoose.Schema({
