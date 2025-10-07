@@ -5,14 +5,19 @@ import {
   signin,
   updateProfile,
   checkAuth,
+  me
 } from "../controllers/userController.js";
 import { protectRoute  } from "../middleware/authMiddleware.js"
 
 const router = express.Router();
 
+
+
+router.get("/check-auth", protectRoute , checkAuth);
+router.get("/me", me)
 router.post("/signup", signup);
 router.post("/signin", signin);
-router.get("/check-auth", protectRoute , checkAuth);
-router.put("/update-profile", protectRoute , updateProfile);
 
+router.put("/update-profile", protectRoute , updateProfile);
+router.put("/change-loc", protectRoute , changeLoc); 
 export default router;

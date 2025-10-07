@@ -99,3 +99,12 @@ export const checkAuth = async (req, res) => {
 export const me = (req, res) => {
   res.json({ user: req.user });
 };
+
+export const changeLoc =  async (req, res) => {
+  const { lat, lon } = req.body;
+  req.user.lat = lat;
+  req.user.lon = lon;
+  req.user.updatedAt = new Date();
+  await req.user.save();
+  res.json({ message: "Location updated" });
+};
