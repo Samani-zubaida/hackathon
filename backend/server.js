@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express';      
 import dotenv from 'dotenv';
 import userRouters from './routes/userRoutes.js';
 import { connectDB } from "./lib/db.js";
@@ -11,9 +11,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.json());
-
-import userRoutes from './routes/userRoutes.js';
-app.use('/api/users', userRoutes);
+app.use('/api/users', userRouters);
 app.listen(5000, () => {
     console.log('Server running on port 5000');
     connectDB();
