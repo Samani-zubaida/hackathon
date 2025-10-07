@@ -4,6 +4,7 @@ import {
   signup,
   signin,
   updateProfile,
+  changeLoc,
   checkAuth,
   me
 } from "../controllers/userController.js";

@@ -5,7 +5,7 @@ import fs from "fs";
 
 // Create Post
 import Post from "../models/postModel.js";
-import cloudinary from "../config/cloudinary.js"; // your cloudinary config
+import cloudinary from "../config/config.js"; // your cloudinary config
 
 // Create Post
 export const createPost = async (req, res) => {
