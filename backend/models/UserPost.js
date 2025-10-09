@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const userPostSchema = new mongoose.Schema({
@@ -10,9 +9,22 @@ const userPostSchema = new mongoose.Schema({
     lon: { type: Number, required: true },
   },
   images: [{ type: String }], // URLs of uploaded images
+
+  // 🔹 Add single video field
+  video: {
+    type: String, // Cloudinary video URL
+    validate: {
+      validator: function (v) {
+        return !v || /^https?:\/\/res\.cloudinary\.com\/.+\/video\/upload\//.test(v);
+      },
+      message: "Invalid Cloudinary video URL",
+    },
+  },
+
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   createdAt: { type: Date, default: Date.now },
 });
 
 export default mongoose.model("UserPost", userPostSchema);
+
