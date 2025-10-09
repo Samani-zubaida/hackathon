@@ -1,6 +1,6 @@
-// import Post from "./models/postModel.js";
-// import cloudinary from "./config/config.js"; // your cloudinary config
-import Post from "./models/UserPost.js";
+
+
+import Post from "../models/UserPost.js";
 import cloudinary from "../lib/config.js" // your cloudinary config
 
 // Create Post
