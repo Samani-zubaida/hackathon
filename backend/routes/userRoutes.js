@@ -7,7 +7,6 @@ import {
   changeLoc,
   checkAuth,
   me,
-
 } from "../controllers/userController.js";
 import { protectRoute  } from "../middleware/authMiddleware.js"
 
