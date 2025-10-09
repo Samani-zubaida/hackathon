@@ -1,5 +1,5 @@
-import Post from "./models/UserPost.js";
-import cloudinary from "../config/cloudinary.js";
+import Post from "../models/UserPost.js"
+import cloudinary from  "../lib/config.js"
 
 export const getAllPosts = async (req, res) => {
   try {
