@@ -1,4 +1,4 @@
-import Post from "../models/UserPost.js"
+import UserPost from "../models/UserPost.js"
 import cloudinary from  "../lib/config.js"
 
 export const getAllPosts = async (req, res) => {
@@ -30,12 +30,12 @@ export const updatePost = async (req, res) => {
     if (post.user.toString() !== req.user._id.toString())
       return res.status(403).json({ message: "Not authorized" });
 
-    // Update image if provided
+   
     if (image) {
       // Delete old image from Cloudinary
-      if (post.image) {
+      if (post.images) {
         // Extract public_id from URL
-        const publicId = post.image.split("/").pop().split(".")[0]; // assumes folder/posts/filename.jpg
+        const publicId = post.images.split("/").pop().split(".")[0]; // assumes folder/posts/filename.jpg
         await cloudinary.uploader.destroy(`posts/${publicId}`);
       }
 
@@ -43,7 +43,7 @@ export const updatePost = async (req, res) => {
       const uploadRes = await cloudinary.uploader.upload(image, {
         folder: "posts",
       });
-      post.image = uploadRes.secure_url;
+      post.images = uploadRes.secure_url;
     }
 
     // Update title and description

@@ -1,39 +1,53 @@
+import cloudinary from "../lib/config.js";
+import UserPost from "../models/UserPost.js";
 
-
-import Post from "../models/UserPost.js";
-import cloudinary from "../lib/config.js" // your cloudinary config
-
-// Create Post
 export const createPost = async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const userId = req.user._id; // coming from JWT middleware
+    const { title, description, image, video } = req.body;
+    const userId = req.user._id; // from JWT middleware
 
-    if (!title || !description || !req.body.image)
-      return res.status(400).json({ message: "All fields are required" });
+    if (!title || !description)
+      return res.status(400).json({ message: "Title and description are required" });
 
-    // Upload image to Cloudinary
-    let imageUrl;
-    if (req.body.image) {
-      const uploadRes = await cloudinary.uploader.upload(req.body.image, {
-        folder: "posts", // folder in Cloudinary
+    if (!image && !video)
+      return res.status(400).json({ message: "Please upload an image or a video" });
+
+    // Upload image (if provided)
+    let imageUrl = null;
+    if (image) {
+      const uploadImage = await cloudinary.uploader.upload(image, {
+        folder: "posts/images",
+        resource_type: "image",
       });
-      imageUrl = uploadRes.secure_url;
+      imageUrl = uploadImage.secure_url;
     }
 
-    // Save post in DB
+    // Upload video (if provided)
+    let videoUrl = null;
+    if (video) {
+      const uploadVideo = await cloudinary.uploader.upload(video, {
+        folder: "posts/videos",
+        resource_type: "video",
+      });
+      videoUrl = uploadVideo.secure_url;
+    }
+
+    // Save post in MongoDB
     const newPost = await Post.create({
       user: userId,
       title,
       description,
       image: imageUrl,
+      video: videoUrl,
     });
 
-    res.status(201).json({ message: "Post created successfully", post: newPost });
+    res.status(201).json({
+      message: "Post created successfully",
+      post: newPost,
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Error while creating post:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
 
-// Get all posts
