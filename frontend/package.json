@@ -10,17 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@tailwindcss/vite": "^4.1.14",
-    "axios": "^1.12.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    
+    
+    
     "react-hot-toast": "^2.6.0",
-    "react-router-dom": "^7.9.4",
     "routes": "^2.1.0",
-    "tailwindcss": "^4.1.14",
-    "toaster": "^0.1.2"
-=======
+    "toaster": "^0.1.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@heroicons/react": "^2.2.0",
@@ -37,7 +32,6 @@
     "react-router-dom": "^7.10.0",
     "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.1.17"
->>>>>>> aead57f0618b75dc13a04f6dd98d9c0bc97f1742
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
