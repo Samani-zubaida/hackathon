@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login.jsx";
@@ -25,3 +26,20 @@ function App() {
 export default App;
 
 
+=======
+import Layout from "./components/Layout/Layout"
+
+
+
+function App() {
+ 
+
+  return (
+    <>
+       <Layout />
+    </>
+  )
+}
+
+export default App
+>>>>>>> aead57f0618b75dc13a04f6dd98d9c0bc97f1742
