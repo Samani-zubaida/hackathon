@@ -1,7 +1,15 @@
-import axios from "axios";
+import Layout from "./components/Layout/Layout"
 
-export default function App() {
-  <>
-  
-  </>
+
+
+function App() {
+ 
+
+  return (
+    <>
+       <Layout />
+    </>
+  )
 }
+
+export default App

@@ -1,12 +1,20 @@
 import express from 'express';      
 import dotenv from 'dotenv';
+dotenv.config(); 
 import userRouters from './routes/userRoutes.js';
 import { connectDB } from "./lib/db.js";
 import PostRouters from './routes/postRoutes.js';
 import exploreRouter from "./routes/exploreRouter.js";
 import OpenAI from "openai";
 import chatRoutes from "./routes/chatRoutes.js"
-dotenv.config(); 
+import geocodeRouter from "./routes/MapRoutes/geocodeRoutes.js";
+import locationRouter from "./routes/MapRoutes/locationRoutes.js";
+import uploadRouter from "./routes/MapRoutes/uploadRoutes.js";
+import placeRouter from "./routes/MapRoutes/placesRoute.js";
+import routeRouter from "./routes/MapRoutes/routeRoutes.js";
+import streetViewRouter from "./routes/MapRoutes/streetRoutes.js";
+
+
 
 
 import cors from 'cors';
@@ -28,6 +36,13 @@ app.use('/api/users', userRouters);
 app.use("/api/posts" , PostRouters);
 app.use("/api/explore" , exploreRouter);
 app.use("/api", chatRoutes);
+app.use("/api/map/geocode",geocodeRouter);
+app.use("/api/map/location",locationRouter);
+app.use("/api/map/upload",uploadRouter);
+app.use("/api/map/places", placeRouter);
+app.use("/api/map/route", routeRouter);
+app.use("/api/map/streetview", streetViewRouter);
+
 
 app.listen(5000, () => {
     console.log('Server running on port 5000');
