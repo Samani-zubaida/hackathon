@@ -1,10 +1,19 @@
-import React from "react";
 import PlaceList from "./PlaceList";
 
-const LeftPanel = () => {
+const LeftPanel = ({
+  selectedPlace,
+  setSelectedPlace,
+  selectedCategory,
+  center,
+}) => {
   return (
-    <div className="h-screen w-[420px] border-r overflow-hidden flex flex-col">
-      <PlaceList />
+    <div className="w-[420px] border-r h-full">
+      <PlaceList
+        selectedPlace={selectedPlace}
+        setSelectedPlace={setSelectedPlace}
+        selectedCategory={selectedCategory}
+        center={center}
+      />
     </div>
   );
 };

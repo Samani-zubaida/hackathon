@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPlaceImage } from "../../utils/getImage";
 
-const PlaceCard = ({ place }) => {
+const PlaceCard = ({ place, onSelect, isSelected }) => {
   const [image, setImage] = useState("/defaults/default-image.webp");
   const [loading, setLoading] = useState(true);
 
@@ -18,15 +18,23 @@ const PlaceCard = ({ place }) => {
     }
 
     loadImage();
-
-    return () => {
-      isMounted = false;
-    };
+    return () => (isMounted = false);
   }, [place.name, place.type]);
 
   return (
-    <div className="w-full flex items-center gap-4 bg-white rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer">
-
+    <div
+      onClick={() => onSelect(place)}  
+      className={`
+        w-full flex items-center gap-4
+        rounded-xl p-4 cursor-pointer
+        transition
+        ${
+          isSelected
+            ? "bg-blue-50 border border-blue-400 shadow-md"
+            : "bg-white shadow-sm hover:shadow-md"
+        }
+      `}
+    >
       {/* Image */}
       <div className="h-20 w-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
         {loading ? (
@@ -41,7 +49,7 @@ const PlaceCard = ({ place }) => {
         )}
       </div>
 
-      {/* Text Content */}
+      {/* Text */}
       <div className="flex flex-col gap-1">
         <h4 className="text-sm font-semibold text-gray-800 leading-tight">
           {place.name}
@@ -56,6 +64,10 @@ const PlaceCard = ({ place }) => {
             {Math.round(place.distance)} m away
           </p>
         )}
+
+        <span className="text-[11px] text-blue-500 font-medium">
+          Get directions →
+        </span>
       </div>
     </div>
   );

@@ -1,58 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import LeftPanel from "../LeftPanel/LeftPanel";
 import Map from "../Map/MapContainer";
+import StreetImages from "../RightPanel/StreetImages";
 
 const Layout = () => {
-  const navbarHeight = 90; // adjust according to your Navbar height
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
+  // 🔥 NEW SHARED STATE
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [hoveredImageId, setHoveredImageId] = useState(null);
+  const [savedSnaps, setSavedSnaps] = useState([]);
+  const [center, setCenter] = useState(null);
+
+  const saveSnap = (img) => {
+    setSavedSnaps((prev) =>
+      prev.find((s) => s.id === img.id) ? prev : [...prev, img]
+    );
+  };
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      {/* Navbar at the top */}
-      <div style={{ height: navbarHeight }}>
-        <Navbar />
-      </div>
+    <div className="h-screen flex flex-col pt-15">
 
-      {/* Main content */}
-    <div
-        style={{
-          flex: 1,
-          marginTop: 20,
-          display:"flex",
-          height:`calc(100vh - ${navbarHeight}px)`,
-        }}
-      >
-        {/* Left Panel */}
-        <div
-        style={{
-          flex: 1,
-       
-        
-        }}
-      >
-        <LeftPanel /> 
-      </div>
+      <div className="flex flex-1 min-h-0 overflow-hidden mt-12">
+        <LeftPanel
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          setSelectedPlace={setSelectedPlace}
+          selectedPlace={selectedPlace}
+          center={center}
+        />
 
-       <div
-        style={{
-          flex: 2, // twice as large as left/right
-          backgroundColor: "#99ccff",
-          
-        }}
-      >
-       <Map />
-      </div>
+        {/* MAP */}
+        <div className="flex-3 min-h-0 overflow-hidden">
+          <Map
+            selectedCategory={selectedCategory}
+            selectedPlace={selectedPlace}
+            selectedImage={selectedImage}
+            hoveredImageId={hoveredImageId}
+            center={center}
+            setCenter={setCenter}
+          />
+        </div>
 
-       <div
-        style={{
-          flex: 1,
-          backgroundColor: "#cce5ff",
-         
-        }}
-      >
-        Right
-      </div>
-
+        {/* RIGHT PANEL */}
+        <div className="flex-[2] min-h-0 border-l">
+          <StreetImages
+            onSelect={setSelectedImage}
+            onHover={setHoveredImageId}
+            onSave={saveSnap}
+            savedSnaps={savedSnaps}
+          />
+        </div>
       </div>
     </div>
   );

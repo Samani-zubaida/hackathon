@@ -5,10 +5,14 @@ import { Toaster } from "react-hot-toast";
 import ChatCompo from "./component/chatCompo.jsx";
 import { ChatProvider } from "./Context/chatContext.jsx";
 import MapPage from "./pages/MapPage.jsx";
-import "../src/utils/fixLeafletIcons.js"
+import "../src/utils/fixLeafletIcons.js";
+import Navbar from "./component/Navbar/Navbar.jsx";
 function App() {
   return (
     <>
+      <div className="h-[64px] shrink-0">
+        <Navbar />
+      </div>
       <ChatProvider>
         <div className="fixed inset-0 w-full h-screen bg-[url('/bgImage.svg')] bg-cover bg-no-repeat">
           <Toaster />
