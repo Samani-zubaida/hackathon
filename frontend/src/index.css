@@ -5,3 +5,15 @@
   clip-path: polygon(0 0, 40% 0, 2% 100%, 0 100%);
 }
 
+
+.leaflet-marker-icon {
+  transition: transform 0.3s ease;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

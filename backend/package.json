@@ -2,8 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "server.js",
   "directories": {
     "lib": "lib"
   },
@@ -19,14 +21,13 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "marked": "^17.0.1",
+    "leaflet-rotate": "^0.2.8",
     "mongoose": "^8.19.0",
     "node": "^24.9.0",
     "node-fetch": "^3.3.2",
     "nodemon": "^3.1.10",
     "openai": "^6.3.0"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
   }
